@@ -13,7 +13,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.Translate(Vector3.forward);
+        }
     }
 
     public IEnumerator RotateArrow()
