@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public Master Mscript;
+
+    public bool isDead;
+
+    public GameObject PauseScreen;
+
+    public GameObject ThingsToDisable;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +22,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+        {
+            ThingsToDisable.SetActive(false);
+            PauseScreen.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene("Game");
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //call snap
@@ -39,7 +54,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Floor")
         {
             //lose
-            SceneManager.LoadScene("Game");
+            isDead = true;
         }
     }
 }
